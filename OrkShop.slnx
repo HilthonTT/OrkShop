@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Libraries/">
+    <Project Path="src/Libraries/Ork.Core/Ork.Core.csproj" />
+  </Folder>
+  <Folder Name="/src/Plugins/" />
+  <Folder Name="/src/Presentation/" />
+</Solution>
