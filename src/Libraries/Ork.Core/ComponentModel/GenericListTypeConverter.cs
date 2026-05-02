@@ -7,12 +7,12 @@ namespace Ork.Core.ComponentModel;
 /// Generic List type converted
 /// </summary>
 /// <typeparam name="T">Type</typeparam>
-public partial class GenericListTypeConverter<T> : TypeConverter
+public sealed class GenericListTypeConverter<T> : TypeConverter
 {
     /// <summary>
     /// Type converter
     /// </summary>
-    protected readonly TypeConverter typeConverter;
+    private readonly TypeConverter typeConverter;
 
     public GenericListTypeConverter()
     {
@@ -25,7 +25,7 @@ public partial class GenericListTypeConverter<T> : TypeConverter
     /// </summary>
     /// <param name="input">Input</param>
     /// <returns>Array</returns>
-    protected virtual string[] GetStringArray(string? input)
+    public string[] GetStringArray(string? input)
     {
         return string.IsNullOrEmpty(input) ? [] : input.Split(',').Select(x => x.Trim()).ToArray();
     }

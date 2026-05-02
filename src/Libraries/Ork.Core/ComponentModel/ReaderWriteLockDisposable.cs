@@ -6,13 +6,13 @@
 /// <remarks>
 /// Intended as an infrastructure class.
 /// </remarks>
-public partial class ReaderWriteLockDisposable : IDisposable
+public sealed class ReaderWriteLockDisposable : IDisposable
 {
     #region Fields
 
-    protected bool _disposed;
-    protected readonly ReaderWriterLockSlim _rwLock;
-    protected readonly ReaderWriteLockType _readerWriteLockType;
+    private bool _disposed;
+    private readonly ReaderWriterLockSlim _rwLock;
+    private readonly ReaderWriteLockType _readerWriteLockType;
 
     #endregion
 
@@ -39,6 +39,8 @@ public partial class ReaderWriteLockDisposable : IDisposable
             case ReaderWriteLockType.UpgradeableRead:
                 _rwLock.EnterUpgradeableReadLock();
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(readerWriteLockType), readerWriteLockType, null);
         }
     }
 
@@ -50,7 +52,7 @@ public partial class ReaderWriteLockDisposable : IDisposable
     /// Protected implementation of Dispose pattern.
     /// </summary>
     /// <param name="disposing">Specifies whether to dispose resources</param>
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
         if (_disposed)
         {
@@ -83,7 +85,7 @@ public partial class ReaderWriteLockDisposable : IDisposable
     /// <summary>
     /// Public implementation of Dispose pattern callable by consumers.
     /// </summary>
-    public virtual void Dispose()
+    public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);

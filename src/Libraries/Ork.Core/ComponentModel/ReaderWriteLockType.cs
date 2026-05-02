@@ -5,7 +5,7 @@
 /// </summary>
 public enum ReaderWriteLockType
 {
-    Read,
-    Write,
-    UpgradeableRead
+    Read = 0,
+    Write = 1,
+    UpgradeableRead = 2,
 }

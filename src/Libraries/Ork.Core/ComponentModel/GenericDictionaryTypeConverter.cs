@@ -8,17 +8,17 @@ namespace Ork.Core.ComponentModel;
 /// </summary>
 /// <typeparam name="K">Key type (simple)</typeparam>
 /// <typeparam name="V">Value type (simple)</typeparam>
-public partial class GenericDictionaryTypeConverter<K, V> : TypeConverter
+public sealed class GenericDictionaryTypeConverter<K, V> : TypeConverter
 {
     /// <summary>
     /// Type converter
     /// </summary>
-    protected readonly TypeConverter _typeConverterKey;
+    private readonly TypeConverter _typeConverterKey;
 
     /// <summary>
     /// Type converter
     /// </summary>
-    protected readonly TypeConverter _typeConverterValue;
+    private readonly TypeConverter _typeConverterValue;
 
     public GenericDictionaryTypeConverter()
     {
