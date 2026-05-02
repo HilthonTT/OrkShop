@@ -22,7 +22,7 @@ public interface IConcurrentCollection<TValue>
     /// </summary>
     /// <param name="key">The key of the new item (case-sensitive)</param>
     /// <param name="value">The value to be associated with <paramref name="key"/></param>
-    void Add(string key, TValue value);
+    void Add(string? key, TValue value);
 
     /// <summary>
     /// Clears the collection
@@ -36,13 +36,13 @@ public interface IConcurrentCollection<TValue>
     /// <returns>
     /// All key-value pairs for keys starting with <paramref name="prefix"/>
     /// </returns>
-    IEnumerable<KeyValuePair<string, TValue>> Search(string prefix);
+    IEnumerable<KeyValuePair<string, TValue?>> Search(string prefix);
 
     /// <summary>
     /// Removes the item with the given key, if present
     /// </summary>
     /// <param name="key">The key (case-sensitive) of the item to be removed</param>
-    void Remove(string key);
+    void Remove(string? key);
 
     /// <summary>
     /// Attempts to remove all items with keys starting with the specified prefix
@@ -52,7 +52,7 @@ public interface IConcurrentCollection<TValue>
     /// <returns>
     /// True if the prefix was successfully removed from the collection, otherwise false
     /// </returns>
-    bool Prune(string prefix, out IConcurrentCollection<TValue> subCollection);
+    bool Prune(string prefix, out IConcurrentCollection<TValue>? subCollection);
 
     #endregion
 
