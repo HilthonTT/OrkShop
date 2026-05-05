@@ -10,5 +10,5 @@ public interface ITypeFinder
 
     IList<Assembly> GetAssemblies();
 
-    Assembly GetAssemblyByName(string assemblyName);
+    Assembly? GetAssemblyByName(string assemblyName);
 }
