@@ -12,8 +12,8 @@ public sealed class WebAppTypeFinder : ITypeFinder
     private static readonly Dictionary<string, Assembly> _assemblies = new(StringComparer.InvariantCultureIgnoreCase);
     private static readonly List<string> _directoriesToLoadAssemblies = [AppContext.BaseDirectory];
 
-    private static bool _loaded;
-    private static readonly object _locker = new();
+    private static bool _loaded = false;
+    private static readonly Lock _locker = new();
 
     private readonly IOrkFileProvider _fileProvider;
 
@@ -235,6 +235,8 @@ public sealed class WebAppTypeFinder : ITypeFinder
                     }
                 }
             }
+
+            _loaded = true;
         }
     }
 }
