@@ -3,7 +3,7 @@
 /// <summary>
 /// Pickup point
 /// </summary>
-public partial class PickupPoint
+public sealed class PickupPoint
 {
     /// <summary>
     /// Gets or sets an identifier
@@ -73,7 +73,7 @@ public partial class PickupPoint
     /// <summary>
     /// Gets or sets an opening hours
     /// </summary>
-    public string OpeningHours { get; set; }
+    public string OpeningHours { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets the display order
