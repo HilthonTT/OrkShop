@@ -2,6 +2,7 @@
   <Folder Name="/src/" />
   <Folder Name="/src/Libraries/">
     <Project Path="src/Libraries/Ork.Core/Ork.Core.csproj" />
+    <Project Path="src/Libraries/Ork.Data/Ork.Data.csproj" Id="d7383ecd-6d47-4760-b60b-10e50fb059cb" />
   </Folder>
   <Folder Name="/src/Plugins/" />
   <Folder Name="/src/Presentation/" />
