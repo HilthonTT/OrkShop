@@ -126,6 +126,21 @@ public interface IOrkDataProvider
         where TEntity : BaseEntity;
 
     /// <summary>
+    /// Asynchronously deletes a collection of entities in bulk.
+    /// </summary>
+    /// <remarks>Bulk deletion may improve performance compared to deleting entities individually. The
+    /// operation is not guaranteed to be atomic; some entities may be deleted even if the operation is canceled or
+    /// fails partway through.</remarks>
+    /// <typeparam name="TEntity">The type of entities to delete. Must inherit from BaseEntity.</typeparam>
+    /// <param name="entities">The list of entities to be deleted. Cannot be null or contain null elements.</param>
+    /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous bulk delete operation.</returns>
+    Task BulkDeleteEntitiesAsync<TEntity>(
+        List<TEntity> entities,
+        CancellationToken cancellationToken = default)
+        where TEntity : BaseEntity;
+
+    /// <summary>
     /// Asynchronously inserts a collection of entities into the data store in a single bulk operation.
     /// </summary>
     /// <remarks>Bulk insertion is typically more efficient than inserting entities individually. The order of

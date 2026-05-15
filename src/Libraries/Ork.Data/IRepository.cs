@@ -22,7 +22,7 @@ public interface IRepository<TEntity> where TEntity : BaseEntity
     /// A task that represents the asynchronous operation
     /// The task result contains the entity entry
     /// </returns>
-    Task<TEntity> GetByIdAsync(
+    Task<TEntity?> GetByIdAsync(
         int? id,
         Func<ICacheKeyService, CacheKey>? getCacheKey = null,
         bool includeDeleted = true,
@@ -76,14 +76,13 @@ public interface IRepository<TEntity> where TEntity : BaseEntity
     /// A task that represents the asynchronous operation
     /// The task result contains the paged list of entity entries
     /// </returns>
-    Task<IPagedList<TEntity>> GetAllPagedAsync(
+    Task<PaginationResult<TEntity>> GetAllPagedAsync(
         Func<IQueryable<TEntity>, IQueryable<TEntity>>? func = null,
         int pageIndex = 0,
         int pageSize = int.MaxValue,
         bool getOnlyTotalCount = false,
         bool includeDeleted = true,
         CancellationToken cancellationToken = default);
-
 
     /// <summary>
     /// Get all entity entries
@@ -98,7 +97,7 @@ public interface IRepository<TEntity> where TEntity : BaseEntity
     /// A task that represents the asynchronous operation
     /// The task result contains the paged list of entity entries
     /// </returns>
-    Task<IPagedList<TEntity>> GetAllPagedAsync(
+    Task<PaginationResult<TEntity>> GetAllPagedAsync(
         Func<IQueryable<TEntity>, Task<IQueryable<TEntity>>>? func = null,
         int pageIndex = 0,
         int pageSize = int.MaxValue,
@@ -158,7 +157,7 @@ public interface IRepository<TEntity> where TEntity : BaseEntity
     /// <param name="publishEvent">true to publish deletion events after removing the entities; otherwise, false. The default is true.</param>
     /// <param name="cancellationToken">A cancellation token that can be used to cancel the operation.</param>
     /// <returns>A task that represents the asynchronous delete operation.</returns>
-    Task DeleteAsync(List<TEntity> entity, bool publishEvent = true, CancellationToken cancellationToken = default);
+    Task DeleteAsync(List<TEntity> entities, bool publishEvent = true, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Asynchronously deletes all entities that match the specified predicate.
@@ -176,7 +175,7 @@ public interface IRepository<TEntity> where TEntity : BaseEntity
     /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation. The default value is None.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the original copy of the specified
     /// entity, or null if the entity does not exist in the data store.</returns>
-    Task<TEntity> LoadOriginalCopyAsync(TEntity entity, CancellationToken cancellationToken = default);
+    Task<TEntity?> LoadOriginalCopyAsync(TEntity entity, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Asynchronously removes all records from the underlying data store.
