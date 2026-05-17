@@ -6,7 +6,7 @@ using System.Configuration;
 
 namespace Ork.Data.Configuration;
 
-internal sealed class DataConfig : IConfig, IConnectionStringAccessor
+public sealed class DataConfig : IConfig, IConnectionStringAccessor
 {
     public string ConnectionString { get; set; } = string.Empty;
 
